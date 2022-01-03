@@ -13,8 +13,13 @@ RSpec.describe StatusHelper, type: :helper do
 
   describe 'status?' do
     let(:status_response) { StatusHelper::EasyBrokerChecker.status? }
-    it "returns API status", :vcr do
+    it "returns Ok API status", :vcr do
       expect(status_response).to be_eql("OK")
+    end
+
+    let(:status_response) { StatusHelper::EasyBrokerChecker.status? }
+    it "returns Broken API status", :vcr do
+      expect(status_response).to be_eql("Broken")
     end
   end
 
