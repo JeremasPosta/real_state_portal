@@ -9,6 +9,7 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.4'
 gem 'bootsnap', '>= 1.4.4', require: false
 # Manage ENV vars.  https://rubygems.org/gems/dotenv
 gem 'dotenv', '~> 2.7'
+gem 'dotenv-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Adds methods to manage JSON data. https://rubygems.org/gems/json
