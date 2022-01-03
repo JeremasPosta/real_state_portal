@@ -16,6 +16,8 @@
 
 require 'support/vcr_setup.rb'
 require 'dotenv'
+require 'simplecov'
+SimpleCov.start
 
 Dotenv.load('.env')
 
