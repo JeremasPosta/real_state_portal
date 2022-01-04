@@ -11,7 +11,7 @@ class PropertiesController < ApplicationController
     max_page_items = EasyBrokerApi::MAX_ITEMS
     total_items = pagination['total'].to_i
 
-    return total_items / max_page_items if total_items % max_page_items.zero?
+    return total_items / max_page_items if (total_items % max_page_items).zero?
 
     (total_items / max_page_items + 1).floor
   end
