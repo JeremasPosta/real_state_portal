@@ -10,7 +10,7 @@ module StatusHelper
             "X-Authorization" => ENV['EB_API_KEY']
           }).execute
         rescue => except
-          puts "#{except.class}: #{except.message}"
+          "#{except.class}: #{except.message}"
       end
       response
     end

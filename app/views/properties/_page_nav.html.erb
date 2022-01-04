@@ -1,0 +1,2 @@
+  <%= link_to 'Previous', properties_path(:page => @actual_page - 1) if @actual_page != 1 %>
+  <%= link_to 'Next', properties_path(:page => @actual_page + 1)  if @actual_page != @last_page %>
