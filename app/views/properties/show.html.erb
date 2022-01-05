@@ -1,0 +1,34 @@
+<h1>Property details:</h1>
+<article>
+  <ul>
+    <li>Public ID</li>
+    <p id='property-public-id'>
+      <%= @property['public_id'] %>
+    </p>
+    <li>Title</li>
+        <p id='property-title'>
+          <%= @property['title'] %>
+        </p>
+    <li>Description</li>
+        <p id='property-description'>
+          <%= @property['description'] %>
+        </p>
+    <li>Image</li>
+          <% unless @property['property_images'].first.nil? %>
+            <img src="<%= @property['property_images'].first['url'] %>" title="<%= @property['property_images'].first['title'] %>" />
+          <% else %>
+          <p>No image Available</p>
+          <% end %>
+    <li>Type</li>
+        <p id='property-type'>
+          <%= @property['property_type'] %>
+        </p>
+    <li>Location</li>
+        <p id='property-location'>
+          <%= @property['location']['name'] %>
+        </p>
+    <li>Contact</li>
+        <p id='contact-form'></p>
+  </ul>
+</article>
+  <%= link_to 'Back to list', properties_path(:page => @from_page_number.to_i) %>
