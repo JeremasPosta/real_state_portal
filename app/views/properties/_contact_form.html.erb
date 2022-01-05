@@ -1,0 +1,21 @@
+<div class="contact_form">
+<%= form_with url: properties_contact_url, method: :post do |form| %>
+  <div>
+    <%= form.hidden_field :id, value: @property['public_id'] %></br>
+    <%= form.hidden_field :from_page, value: @from_page_number%></br>
+
+    <%= form.label :name %></br>
+    <%= form.text_field  :name, required: true, placeholder: 'Your Name'%></br>
+
+    <%= form.label :phone %></br>
+    <%= form.telephone_field  :phone, required: true, placeholder:'+540546987' %></br>
+
+    <%= form.label :email %></br>
+    <%= form.email_field :email, required: true, placeholder: 'your@email.com'%></br>
+
+    <%= form.label :message %></br>
+    <%= form.text_area :message, rows: 10, required: false, placeholder: "Write down any question."%></br>
+
+    <%= form.submit 'Send!' %>
+  </div>
+<% end %>

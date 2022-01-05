@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'properties#index'
+  get 'status/index'
+  get 'properties', to: 'properties#index'
+  get 'properties/:id', to: 'properties#show', as: 'property'
+  post 'properties/contact', to: 'properties#contact'
 end
