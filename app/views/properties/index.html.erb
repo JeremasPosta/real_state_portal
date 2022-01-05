@@ -1,7 +1,7 @@
 <h1>Properties list:</h1>
 <%= render 'page_nav'%>
 <table>
-  <thead>
+  <%# <thead>
     <tr>
       <th>Public ID</th>
       <th>Title</th>
@@ -9,11 +9,11 @@
       <th>Location</th>
       <th>Image</th>
     </tr>
-  </thead>
+  </thead> %>
   <tbody>
     <% @properties_list.each do |property| %>
-      <tr>
-        <td>
+      <tr class="properties">
+        <td class="detail_link">
           <%= link_to property['public_id'], property_path(property['public_id'], from_page: @actual_page) %>
         </td>
         <td><%= property['title'] %></td>

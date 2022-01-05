@@ -1,15 +1,15 @@
 <h1>Property details:</h1>
 <% if notice %>
-  <p>
+  <p class="notice">
     <%= notice %>
   </p>
 <% end %>
 <% if alert %>
-  <p>
+  <p class="alert">
     <%= alert %>
   </p>
 <% end %>
-<article>
+<article class="property">
   <ul>
     <li>Public ID</li>
     <p id='property-public-id'>
@@ -38,9 +38,7 @@
           <%= @property['location']['name'] %>
         </p>
     <li>Contact</li>
-        <p id='contact-form'>
           <%= render 'contact_form' %>
-        </p>
   </ul>
 </article>
   <%= link_to 'Back to list', properties_path(page: @from_page_number) %>
