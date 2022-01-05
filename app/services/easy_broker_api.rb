@@ -8,12 +8,20 @@ class EasyBrokerApi
     RestClient::Request.new method: :get, url: properties_endpoint(query), headers: headers
   end
 
+  def self.get_property(public_id)
+    RestClient::Request.new method: :get, url: property_endpoint(public_id), headers: headers
+  end
+
   def self.build_query(query)
     { limit: MAX_ITEMS, page: 1, 'search[statuses][]' => 'published' }.merge(query).to_query
   end
 
   def self.properties_endpoint(query)
     "https://api.stagingeb.com/v1/properties?#{query}"
+  end
+
+  def self.property_endpoint(public_id)
+    "https://api.stagingeb.com/v1/properties/#{public_id}"
   end
 
   def self.headers
