@@ -7,6 +7,12 @@ class PropertiesController < ApplicationController
     @properties_list = JSON.parse(response.body)['content']
   end
 
+  def show
+    response = EasyBrokerApi.get_property(params[:id]).execute
+    @from_page_number = params[:from_page]
+    @property = JSON.parse(response.body)
+  end
+
   def max_page_number
     max_page_items = EasyBrokerApi::MAX_ITEMS
     total_items = pagination['total'].to_i
