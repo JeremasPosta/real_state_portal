@@ -1,4 +1,14 @@
 <h1>Property details:</h1>
+<% if notice %>
+  <p>
+    <%= notice %>
+  </p>
+<% end %>
+<% if alert %>
+  <p>
+    <%= alert %>
+  </p>
+<% end %>
 <article>
   <ul>
     <li>Public ID</li>
@@ -28,7 +38,9 @@
           <%= @property['location']['name'] %>
         </p>
     <li>Contact</li>
-        <p id='contact-form'></p>
+        <p id='contact-form'>
+          <%= render 'contact_form' %>
+        </p>
   </ul>
 </article>
-  <%= link_to 'Back to list', properties_path(:page => @from_page_number.to_i) %>
+  <%= link_to 'Back to list', properties_path(page: @from_page_number) %>
