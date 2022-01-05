@@ -8,9 +8,27 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    response = EasyBrokerApi.get_property(params[:id]).execute
-    @from_page_number = params[:from_page]
+    request = EasyBrokerApi.get_property(params[:id])
+    response = request.execute
+    @from_page_number = params[:from_page].to_i
     @property = JSON.parse(response.body)
+  end
+
+  def contact
+    contact_data = {
+      name: params[:name],
+      phone: params[:phone],
+      email: params[:email],
+      property_id: params[:id],
+      message: params[:message],
+      source: "mydomain.com"
+    }
+
+    if EasyBrokerApi.post_contact(contact_data).execute
+      redirect_back fallback_location: root_path, notice: 'Thanks!'
+    else
+      redirect_back fallback_location: root_path, alert: 'Oh no!'
+    end
   end
 
   def max_page_number

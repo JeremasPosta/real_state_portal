@@ -6,7 +6,7 @@ RSpec.describe "properties/:id", type: :feature do
     visit property_url('EB-B5515')
     expect(page).to have_content('')
   end
-  
+
   it 'render required elements', :vcr do
     visit property_url('EB-B5515')
     expect(page).to have_content('Property details:')
@@ -30,4 +30,14 @@ RSpec.describe "properties/:id", type: :feature do
     visit property_url('EB-B5515')
     expect(page).to have_selector('p', id: 'property-public-id', text: 'EB-B5515')
   end
+
+  it 'have a contact form', :vcr do
+    visit property_url('EB-B5515')
+    fill_in('name', :with => 'Jhon')
+    fill_in('phone', :with => '+(1)234-56')
+    fill_in('email', :with => 'your@email.com')
+    fill_in('message', :with => 'Really short message.')
+    click_on('Send!')
+  end
+
 end
