@@ -13,7 +13,9 @@
   <tbody>
     <% @properties_list.each do |property| %>
       <tr>
-        <td><%= property['public_id'] %></td>
+        <td>
+          <%= link_to property['public_id'], property_path(property['public_id'], from_page: @actual_page) %>
+        </td>
         <td><%= property['title'] %></td>
         <td><%= property['property_type'] %></td>
         <td><%= property['location'] %></td>
