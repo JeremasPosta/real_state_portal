@@ -14,8 +14,6 @@ gem 'dotenv-rails'
 gem 'jbuilder', '~> 2.7'
 # Adds methods to manage JSON data. https://rubygems.org/gems/json
 gem 'json', '~> 2.6'
-# Use Pagy for pagination. Read more: https://rubygems.org/gems/pagy
-gem 'pagy', '~> 5.6'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Http client to make requests. https://rubygems.org/gems/rest-client
@@ -36,8 +34,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.1'
   # For run Selenium tests.  # https://rubygems.org/gems/webdrivers
   gem 'webdrivers', '~> 5.0'
-  # Create mocks objects. https://rubygems.org/gems/factory_bot_rails
-  gem 'factory_bot_rails', '~> 5.1'
 end
 
 group :development do
@@ -49,8 +45,6 @@ group :development do
 end
 
 group :test do
-  # Add support for simplier tests https://rubygems.org/gems/shoulda-matchers
-  gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
   # Show test coverage info. https://rubygems.org/gems/simplecov
   gem 'simplecov', '~> 0.13.0', require: false
   # Record and reuse your test suite's HTTP interactions. https://rubygems.org/gems/vcr

@@ -6,35 +6,30 @@ class EasyBrokerApi
 
   def self.get_properties(extra_querys = {})
     query = build_query(extra_querys)
-    RestClient::Request.new method: :get, url: properties_endpoint(query), headers: headers
+    RestClient.get properties_endpoint(query), headers
   end
 
   def self.get_property(public_id)
-    RestClient::Request.new method: :get, url: property_endpoint(public_id), headers: headers
+    RestClient.get property_endpoint(public_id), headers
   end
 
   def self.post_contact(contact_fields)
-    contact_fields = contact_fields.to_json
-    request = RestClient::Request.new(method: :post,
-      url: contact_req_endpoint,
-      payload: "#{contact_fields}",
-      headers: {"Content-Type" => "application/json", "X-Authorization" => "#{ENV['EB_API_KEY']}"}
-     )
+    RestClient.post contact_endpoint, contact_fields.to_json, {"Content-Type" => "application/json"}.merge(headers)
   end
 
   def self.build_query(query)
     { limit: MAX_ITEMS, page: 1, 'search[statuses][]' => 'published' }.merge(query).to_query
   end
 
-  def self.properties_endpoint(query)
-    "https://api.stagingeb.com/v1/properties?#{query}"
+  def self.properties_endpoint(query = '')
+    "#{API_URL}/properties?#{query}"
   end
 
-  def self.property_endpoint(public_id)
-    "https://api.stagingeb.com/v1/properties/#{public_id}"
+  def self.property_endpoint(public_id = '')
+    "#{API_URL}/properties/#{public_id}"
   end
 
-  def self.contact_req_endpoint
+  def self.contact_endpoint
     "#{API_URL}/contact_requests"
   end
 

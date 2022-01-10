@@ -14,7 +14,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'support/vcr_setup.rb'
+require 'support/vcr_setup'
 require 'dotenv'
 require 'simplecov'
 SimpleCov.start
