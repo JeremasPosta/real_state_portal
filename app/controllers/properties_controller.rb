@@ -1,15 +1,13 @@
 class PropertiesController < ApplicationController
   def index
-    request = EasyBrokerApi.get_properties(properties_params)
-    response = request.execute
+    response = EasyBrokerApi.get_properties(properties_params)
     @actual_page = params[:page].to_i
     @last_page = max_page_number
     @properties_list = JSON.parse(response.body)['content']
   end
 
   def show
-    request = EasyBrokerApi.get_property(params[:id])
-    response = request.execute
+    response = EasyBrokerApi.get_property(params[:id])
     @from_page_number = params[:from_page].to_i
     @property = JSON.parse(response.body)
   end
@@ -24,7 +22,7 @@ class PropertiesController < ApplicationController
       source: "mydomain.com"
     }
 
-    if EasyBrokerApi.post_contact(contact_data).execute
+    if EasyBrokerApi.post_contact(contact_data)
       redirect_back fallback_location: root_path, notice: 'Thanks!'
     else
       redirect_back fallback_location: root_path, alert: 'Oh no!'
@@ -32,12 +30,10 @@ class PropertiesController < ApplicationController
   end
 
   def max_page_number
-    max_page_items = EasyBrokerApi::MAX_ITEMS
-    total_items = pagination['total'].to_i
+    max_page_items = EasyBrokerApi::MAX_ITEMS.to_f
+    total_items = pagination['total'].to_f
 
-    return total_items / max_page_items if (total_items % max_page_items).zero?
-
-    (total_items / max_page_items + 1).floor
+    (total_items / max_page_items).ceil
   end
 
   private
@@ -47,17 +43,15 @@ class PropertiesController < ApplicationController
   end
 
   def validate_page_number
-    params[:page] = 1 if params[:page].to_i < 1
+    max_page = max_page_number
 
-    if params[:page].to_i > max_page_number
-      params[:page] = max_page_number
-      return params
-    end
+    params[:page] = 1         if params[:page].to_i < 1
+    params[:page] = max_page  if params[:page].to_i > max_page
 
     params
   end
 
   def pagination
-    JSON.parse(EasyBrokerApi.get_properties.execute.body)['pagination']
+    JSON.parse(EasyBrokerApi.get_properties.body)['pagination']
   end
 end
